@@ -14,7 +14,7 @@ def main():
     summarize_expenses(expense_file_path, budget)
 
 def get_user_expense():
-    print(f"Gettting the user expenses")
+    print(f"Getting the user expenses")
     expense_name = input("Enter expense name: ")
     while True:
         try:
@@ -36,7 +36,7 @@ def get_user_expense():
             print(f"  {i+1}. {category_name}")
 
         value_range = f"[1 - {len(expense_category)}]"
-        selected_index = int(input(f"Select an category number {value_range}: ")) - 1
+        selected_index = int(input(f"Select a category number {value_range}: ")) - 1
 
         if selected_index in range(len(expense_category)):
             selected_category = expense_category[selected_index]
@@ -56,7 +56,7 @@ def save_expense_to_file(expense: Expense, expense_file_path):
 
 
 def summarize_expenses(expense_file_path, budget):
-    print(f"Summzing the user expenses")
+    print(f"Summarizing the user expenses")
     expenses: list[Expense] = []
     with open(expense_file_path, "r") as f:
         lines = f.readlines()
@@ -80,10 +80,10 @@ def summarize_expenses(expense_file_path, budget):
     for key, amount in amount_by_category.items():
         print(f"  {key}: ${amount:,.2}")
 
-    totel_spent = sum(x.amount for x in expenses)
-    print(f"Totel Spent: {totel_spent:,.2f} this month")
+    total_spent = sum(x.amount for x in expenses)
+    print(f"Total Spent: {total_spent:,.2f} this month")
 
-    remaining_budget = budget - totel_spent
+    remaining_budget = budget - total_spent
     print(f"Budget remaining: {remaining_budget:,.2f}")
 
     now = datetime.datetime.now()
@@ -104,4 +104,5 @@ def green(text):
     return f"\033[92m{text}\033[0m"
 
 if __name__ == "__main__":
+
     main()
